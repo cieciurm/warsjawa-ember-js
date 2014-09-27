@@ -4,6 +4,8 @@ App.Router.map(function(){
     this.resource('subreddit', {path: "/subreddit/:key" }, function() {
         this.resource('subscribers');
     });
+	this.resource('users', {path: "/users/"});
+	this.resource('user', {path: "/user/:login"});
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -11,6 +13,18 @@ App.IndexRoute = Ember.Route.extend({
 		return subreddits;
 	}
 });
+
+App.UsersRoute = Ember.Route.extend({
+	model: function() {
+		return users;
+	}
+});
+
+var users = [
+	{login: "wycats", name: "Yehuda Katz"},
+	{login: "torvalds", name: "Linus Torvalds"},
+	{login: "dhh", name: "David Heinemeier Hansson"}
+]
 
 subreddits = [
 	{key: "cityporn", name: "City Porn"},

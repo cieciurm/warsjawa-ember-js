@@ -15,11 +15,27 @@
 
 	<script type="text/x-handlebars" id="index">
 		<button {{action "clickMe"}}>Click me</button>
+		<h3>Subreddits</h3>
 		<ul>
 		{{#each}}
 			<li>{{#link-to "subreddit" this}}{{name}}{{/link-to}}</li>
 		{{/each}}
 		</ul>
+
+		<h3>{{#link-to "users"}}Github users{{/link-to}}</h3>
+	</script>
+
+	<script type="text/x-handlebars" id="users">
+		<h3>Github users</h3>
+		<ul>
+		{{#each}}
+			<li>{{name}} - {{#link-to "user" this.login}}{{login}}{{/link-to}}</li>
+		{{/each}}
+		</ul>
+	</script>
+
+	<script type="text/x-handlebars" id="user">
+		{{this.login}}
 	</script>
 
 	<script type="text/x-handlebars" id="subreddit">
@@ -32,7 +48,7 @@
 	</script>
 
 	<script type="text/x-handlebars" id="subreddit/index">
-		{{#link-to 'subscribers' this}}Subscribers{{/link-to}}
+		{{#link-to "subscribers" this}}Subscribers{{/link-to}}
 	</script>
 
 	<script type="text/x-handlebars" id="subscribers">
