@@ -1,14 +1,13 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-  this.resource("subreddit", {path: "/subreddit/:name"});
-  // put your routes here
+	this.resource("subreddit", {path: "/subreddit/:key"});
 });
 
 App.IndexRoute = Ember.Route.extend({
-  model: function() {
-	return subreddits;
-  }
+	model: function() {
+		return subreddits;
+	}
 });
 
 subreddits = [
@@ -19,8 +18,14 @@ subreddits = [
 
 App.IndexController = Ember.ArrayController.extend({
 	actions: {
-	  clickMe: function() {
-		  alert('Hello ember.js');
-	  }
+		clickMe: function() {
+			alert('Hello ember.js');
+		}
+	}
+});
+
+App.SubredditRoute = Ember.Route.extend({
+	model: function(params) {
+		return Ember.$.getJSON("http://www.reddit.com/r/" + params.key + "/about.json");
 	}
 });
