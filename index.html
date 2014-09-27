@@ -17,13 +17,26 @@
 		<button {{action "clickMe"}}>Click me</button>
 		<ul>
 		{{#each}}
-			<li>{{#link-to 'subreddit' this}}{{name}}{{/link-to}}</li>
+			<li>{{#link-to "subreddit" this}}{{name}}{{/link-to}}</li>
 		{{/each}}
 		</ul>
 	</script>
 
 	<script type="text/x-handlebars" id="subreddit">
-		<h3>Info about {{data.display_name}}</h3>
+		<h3>Info about {{display_name}}</h3>
+		<img {{bind-attr src=header_img}}/>
+		<p>{{url}}</p>
+		<p>{{#link-to "index"}}Go back{{/link-to}}</p>
+
+		{{outlet}}
+	</script>
+
+	<script type="text/x-handlebars" id="subreddit/index">
+		{{#link-to 'subscribers' this}}Subscribers{{/link-to}}
+	</script>
+
+	<script type="text/x-handlebars" id="subscribers">
+		<p>Number of subscribers: {{controllers.subreddit.subscribers}}</p>
 	</script>
 
 	<script src="js/libs/jquery-1.10.2.js"></script>
